@@ -25,7 +25,7 @@ app.get("/fruitlist", (req, res) => {
     //frontend request give a fruitlist, that time backend send database array(data)
     Fruit.find().then(function (retdata) {
         console.log(retdata)
-        res.send(retdata)
+        res.status(200).send(retdata)
     })
     //res.send(fruit)
 })
@@ -47,12 +47,12 @@ app.post("/deletefruit", (req, res) => {
 
     Fruit.findByIdAndDelete(deleteFruit).then(()=>
     {
-        res.send("Deleted Successfully")
+        res.status(200).send("Deleted Successfully")
         console.log("Deleted Successfully")
     })
     .catch((err)=>
     {
-        res.send("Failed to delete")
+        res.status(404).send("Failed to delete")
         console.log("Failed to delete",err)
     })
 })
